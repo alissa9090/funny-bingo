@@ -14,11 +14,8 @@ const useStyles = makeStyles(() => ({
     justifyContent: 'center',
     alignItems: 'center'
   },
-  middle: {
-    width: '100%'
-  },
-  inner: {
-    margin: 'auto'
+  bingo: {
+    maxWidth: '600px'
   }
 }));
 
@@ -31,11 +28,7 @@ const App = () => {
         <BingoAppBar />
       </div>
       <div className={classes.bingoContainer}>
-        <div className={classes.bingoContainer}>
-          <div className={classes.bingoContainer}>
-            <Bingo />
-          </div>
-        </div>
+        <Bingo className={classes.bingo} />
       </div>
     </div>
   );

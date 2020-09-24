@@ -1,19 +1,13 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Card from './card';
 
-const useStyles = makeStyles(() => ({
-  bingo: {
-    maxWidth: '600px'
-  }
-}));
-
-const Bingo = () => {
-  const classes = useStyles();
+// eslint-disable-next-line react/prop-types
+const Bingo = ({ className }) => {
+  console.log('bingo');
 
   return (
-    <Grid container spacing={2} justify="space-around" className={classes.bingo}>
+    <Grid container spacing={2} justify="space-around" className={className}>
       {[...Array(5).keys()].map(((row) => (
 
         <Grid key={row} container item xs={12} spacing={2} justify="space-around">
