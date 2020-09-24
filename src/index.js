@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './app';
+import Bingo from './bingo';
 import '../assets/css/index.css';
 
 ReactDOM.render(
-  <App />,
+  <Bingo />,
   document.getElementById('root')
 );

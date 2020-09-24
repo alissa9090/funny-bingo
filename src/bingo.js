@@ -1,7 +1,24 @@
 import React, { useState } from 'react';
-import Grid from '@material-ui/core/Grid';
-import BingoCard from './bingoCard';
+import { makeStyles } from '@material-ui/core/styles';
+import BingoAppBar from './bingoAppBar';
+import BingoBoard from './bingoBoard';
 import bingoCards from '../assets/data/bingoCards.json';
+
+const useStyles = makeStyles(() => ({
+  appBarCoontainer: {
+    height: '84px'
+  },
+  bingoContainer: {
+    height: 'calc(100vh - 84px)',
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  bingo: {
+    maxWidth: '600px'
+  }
+}));
 
 const getWinCombinations = () => {
   const winCombinations = [];
@@ -32,8 +49,9 @@ const getWinCombinations = () => {
   return winCombinations;
 };
 
-// eslint-disable-next-line react/prop-types
-const Bingo = ({ className }) => {
+const Bingo = () => {
+  const classes = useStyles();
+
   const winCombinations = getWinCombinations();
 
   const [pickedCombinations, setPickedCombinations] = useState([]);
@@ -59,22 +77,20 @@ const Bingo = ({ className }) => {
     checkIfWinn(newPicked);
   };
 
+  const startNewGame = () => {
+    setPickedCombinations([]);
+    setPicked([]);
+  };
+
   return (
-    <Grid container spacing={2} justify="space-around" className={className}>
-      {[...Array(5).keys()].map(((row) => (
-
-        <Grid key={row} container item xs={12} spacing={2} justify="space-around">
-          {bingoCards.slice(row * 5, row * 5 + 5).map(({ id, text }) => (
-
-            <Grid key={id} item xs={2}>
-              <BingoCard text={text} picked={picked.includes(id)} onClick={pick(id)} />
-            </Grid>
-
-          ))}
-        </Grid>
-
-      )))}
-    </Grid>
+    <div>
+      <div className={classes.appBarCoontainer}>
+        <BingoAppBar startNewGame={startNewGame} />
+      </div>
+      <div className={classes.bingoContainer}>
+        <BingoBoard className={classes.bingo} bingoCards={bingoCards} picked={picked} pick={pick} />
+      </div>
+    </div>
   );
 };
 

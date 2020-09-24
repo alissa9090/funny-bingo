@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -20,7 +21,7 @@ const useStyles = makeStyles((theme) => (
     }
   }));
 
-const ButtonAppBar = () => {
+const ButtonAppBar = ({ startNewGame }) => {
   const classes = useStyles();
 
   return (
@@ -30,7 +31,7 @@ const ButtonAppBar = () => {
           <Typography variant="h6" className={classes.title}>
             Funny Bingo
           </Typography>
-          <Button className={classes.button}>New game</Button>
+          <Button className={classes.button} onClick={startNewGame}>New game</Button>
         </Toolbar>
       </AppBar>
     </div>
