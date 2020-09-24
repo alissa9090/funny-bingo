@@ -54,6 +54,14 @@ const Bingo = () => {
 
   const winCombinations = getWinCombinations();
 
+  const [showFirework, setShowFirework] = useState(false);
+  const selebrate = () => {
+    setShowFirework(true);
+    setTimeout(() => {
+      setShowFirework(false);
+    }, 5000);
+  };
+
   const [pickedCombinations, setPickedCombinations] = useState([]);
   const checkIfWinn = (pickedArray) => {
     winCombinations.some((winCombination) => {
@@ -62,7 +70,7 @@ const Bingo = () => {
         && !pickedCombinations.includes(winCombination.id)
       ) {
         setPickedCombinations([...pickedCombinations, winCombination.id]);
-        console.log('WIN!!!');
+        selebrate();
         return true;
       }
       return false;
@@ -87,6 +95,12 @@ const Bingo = () => {
       <div className={classes.appBarCoontainer}>
         <BingoAppBar startNewGame={startNewGame} />
       </div>
+      {showFirework && (
+        <div className="pyro">
+          <div className="before" />
+          <div className="after" />
+        </div>
+      )}
       <div className={classes.bingoContainer}>
         <BingoBoard className={classes.bingo} bingoCards={bingoCards} picked={picked} pick={pick} />
       </div>
