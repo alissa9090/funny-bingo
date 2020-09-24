@@ -4,5 +4,5 @@
 
 # start project
 
-parcel index.html
+npm start
 
