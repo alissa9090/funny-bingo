@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 /* eslint-disable no-restricted-globals */
-const CACHE_NAME = 'funny-bingo-v1.0';
+const CACHE_NAME = 'funny-bingo-v1.1';
 const FILES_TO_CACHE = [
   './',
   './manifest.webmanifest',
