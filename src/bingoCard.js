@@ -32,7 +32,7 @@ const BingoCard = ({ text, picked, onClick }) => {
   const classes = useStyles(picked)();
 
   return (
-    <div className={classes.container} onClick={onClick}>
+    <div className={`${classes.container} my-class-name`} onClick={onClick}>
       <Paper className={classes.item}>{text}</Paper>
     </div>
   );

@@ -3,13 +3,13 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import BingoCard from './bingoCard';
 
-const Bingo = ({
+const BingoBoard = ({
   className, bingoCards, picked, pick
 }) => (
-  <Grid container spacing={2} justify="space-around" className={className}>
+  <Grid container spacing={1} justify="space-around" className={className}>
     {[...Array(5).keys()].map(((row) => (
 
-      <Grid key={row} container item xs={12} spacing={2} justify="space-around">
+      <Grid key={row} container item xs={12} spacing={1} justify="space-around">
         {bingoCards.slice(row * 5, row * 5 + 5).map(({ id, text }) => (
 
           <Grid key={id} item xs={2}>
@@ -23,4 +23,4 @@ const Bingo = ({
   </Grid>
 );
 
-export default Bingo;
+export default BingoBoard;
