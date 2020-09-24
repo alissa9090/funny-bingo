@@ -4,7 +4,7 @@ const CACHE_NAME = 'funny-bingo-v1.0';
 const FILES_TO_CACHE = [
   './',
   './manifest.webmanifest',
-  './bingo-icon-512x512.jpg',
+  './bingo-icon-512x512.3d451067.jpg',
   './src.a2b27638.css',
   './src.a2b27638.js'
 ];
