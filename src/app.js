@@ -1,25 +1,24 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import ButtonAppBar from './bingoAppBar';
+import BingoAppBar from './bingoAppBar';
 import Bingo from './bingo';
 
 const useStyles = makeStyles(() => ({
   appBarCoontainer: {
     height: '84px'
   },
-  outer: {
-    display: 'table',
-    position: 'absolute',
-    height: 'calc(100% - 84px)',
-    width: '100%'
+  bingoContainer: {
+    height: 'calc(100vh - 84px)',
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   middle: {
-    display: 'table-cell',
-    verticalAlign: 'middle'
+    width: '100%'
   },
   inner: {
-    margin: '0 auto',
-    maxWidth: '600px'
+    margin: 'auto'
   }
 }));
 
@@ -29,11 +28,11 @@ const App = () => {
   return (
     <div>
       <div className={classes.appBarCoontainer}>
-        <ButtonAppBar />
+        <BingoAppBar />
       </div>
-      <div className={classes.outer}>
-        <div className={classes.middle}>
-          <div className={classes.inner}>
+      <div className={classes.bingoContainer}>
+        <div className={classes.bingoContainer}>
+          <div className={classes.bingoContainer}>
             <Bingo />
           </div>
         </div>
