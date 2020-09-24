@@ -358,6 +358,6 @@ module.exports=[{id:0,text:"(animal noises in the backgroud)"},{id:1,text:"is __
 },{"react":"HdMw","@material-ui/core/styles":"p0RM","./bingoAppBar":"o8gB","./bingoBoard":"MZbE","../assets/data/bingoCards.json":"mahh"}],"aVxz":[function(require,module,exports) {
 
 },{}],"H99C":[function(require,module,exports) {
-"use strict";var e=u(require("react")),r=u(require("react-dom")),t=u(require("./bingo"));function u(e){return e&&e.__esModule?e:{default:e}}require("../assets/css/index.css"),r.default.render(e.default.createElement(t.default,null),document.getElementById("root"));
-},{"react":"HdMw","react-dom":"X9zx","./bingo":"tspl","../assets/css/index.css":"aVxz"}]},{},["H99C"], null)
+"use strict";var e=n(require("react")),r=n(require("react-dom")),t=n(require("./bingo"));function n(e){return e&&e.__esModule?e:{default:e}}require("../assets/css/index.css"),r.default.render(e.default.createElement(t.default,null),document.getElementById("root")),"serviceWorker"in navigator&&window.addEventListener("load",function(){navigator.serviceWorker.register("service-worker.js").then(function(e){console.log("Service worker registered.",e)},console.log)});
+},{"react":"HdMw","react-dom":"X9zx","./bingo":"tspl","../assets/css/index.css":"aVxz","/Users/alisa/Projects/funny-bingo/service-worker.js":[["service-worker.js","AaGI"],"service-worker.js.map","AaGI"]}]},{},["H99C"], null)
 //# sourceMappingURL=src.a2b27638.js.map
