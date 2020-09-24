@@ -1,25 +1,8 @@
 import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import BingoAppBar from './bingoAppBar';
 import BingoBoard from './bingoBoard';
 import bingoCards from '../assets/data/bingoCards.json';
 import Firework from './firework';
-
-const useStyles = makeStyles(() => ({
-  appBarCoontainer: {
-    height: '84px'
-  },
-  bingoContainer: {
-    height: 'calc(100vh - 84px)',
-    width: '100%',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  bingo: {
-    maxWidth: '600px'
-  }
-}));
 
 const getWinCombinations = () => {
   const winCombinations = [];
@@ -51,8 +34,6 @@ const getWinCombinations = () => {
 };
 
 const Bingo = () => {
-  const classes = useStyles();
-
   const winCombinations = getWinCombinations();
 
   const [showFirework, setShowFirework] = useState(false);
@@ -92,13 +73,13 @@ const Bingo = () => {
   };
 
   return (
-    <div>
-      <div className={classes.appBarCoontainer}>
+    <div className="bingo-board">
+      <div className="app-bar-coontainer">
         <BingoAppBar startNewGame={startNewGame} />
       </div>
       <Firework visible={showFirework} />
-      <div className={classes.bingoContainer}>
-        <BingoBoard className={classes.bingo} bingoCards={bingoCards} picked={picked} pick={pick} />
+      <div className="bingo-container">
+        <BingoBoard className="bingo" bingoCards={bingoCards} picked={picked} pick={pick} />
       </div>
     </div>
   );

@@ -1,41 +1,21 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 
-const useStyles = makeStyles((theme) => (
-  {
-    root: {
-      flexGrow: 1,
-      marginBottom: '20px'
-    },
-    title: {
-      marginLeft: '20px',
-      flexGrow: 1
-    },
-    button: {
-      color: theme.palette.primary.contrastText
-    }
-  }));
-
-const ButtonAppBar = ({ startNewGame }) => {
-  const classes = useStyles();
-
-  return (
-    <div className={classes.root}>
-      <AppBar position="static">
-        <Toolbar>
-          <Typography variant="h6" className={classes.title}>
-            Funny Bingo
-          </Typography>
-          <Button className={classes.button} onClick={startNewGame}>New game</Button>
-        </Toolbar>
-      </AppBar>
-    </div>
-  );
-};
+const ButtonAppBar = ({ startNewGame }) => (
+  <div className="bingo-app-bar">
+    <AppBar position="static">
+      <Toolbar>
+        <Typography variant="h6" className="bingo-app-bar-title">
+          Funny Bingo
+        </Typography>
+        <Button className="new-game-button" onClick={startNewGame}>New game</Button>
+      </Toolbar>
+    </AppBar>
+  </div>
+);
 
 export default ButtonAppBar;
