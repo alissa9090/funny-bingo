@@ -22,18 +22,11 @@ body {
 
 .bingo-card-container {
   width: 100%;
-  padding-top: 100%;
+  //padding-top: 100%;
   position: relative;
   cursor: pointer;
   
   .bingo-card-item {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    line-height: 100%;
-    height: 100%;
     text-align: center;
     display: flex;
     align-items: center;
@@ -74,5 +67,33 @@ body {
     .bingo {
       max-width: 600px;
     }
+  }
+}
+
+.bingo-board-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  grid-gap: 24px;
+
+  ::before {
+    content: '';
+    width: 0;
+    padding-bottom: 100%;
+    grid-row: 1 / 1;
+    grid-column: 1 / 1;
+  }
+
+  > *:first-child{
+    grid-row: 1 / 1;
+    grid-column: 1 / 1;
+  }
+
+  .bingo-card {
+    padding: 8px;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.54);
+    white-space: nowrap;
+    margin-bottom: 8px
   }
 }
