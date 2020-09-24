@@ -31,7 +31,7 @@
   },
   "scripts": {
     "start": "parcel index.html",
-    "build": "parcel build --no-content-hash index.html -d build --public-url ./ ",
+    "build": "parcel build index.html -d build --public-url ./ ",
     "test": "echo \"Error: no test specified\" && exit 1"
   }
 }

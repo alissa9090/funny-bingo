@@ -446,4 +446,4 @@ module.exports=[{id:0,text:"(animal noises in the backgroud)"},{id:1,text:"is __
 },{}],"H99C":[function(require,module,exports) {
 "use strict";var e=u(require("react")),r=u(require("react-dom")),t=u(require("./bingo"));function u(e){return e&&e.__esModule?e:{default:e}}require("../assets/css/index.css"),r.default.render(e.default.createElement(t.default,null),document.getElementById("root"));
 },{"react":"HdMw","react-dom":"X9zx","./bingo":"tspl","../assets/css/index.css":"aVxz"}]},{},["H99C"], null)
-//# sourceMappingURL=src.a2b27638.js.map
+//# sourceMappingURL=src.d3cb864d.js.map
