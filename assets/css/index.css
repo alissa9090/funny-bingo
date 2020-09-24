@@ -3,7 +3,7 @@ body {
   padding: 0;
 }
 
-/* If the screen size is 600px wide or less, set the font-size of <div> to 30px */
+/* If the screen size is 600px wide or less, set the font-size to 11px */
 @media only screen and (max-width: 600px) {
   .responsive-font-size {
     font-size: 11px;
