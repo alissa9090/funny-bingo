@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import BingoAppBar from './bingoAppBar';
 import BingoBoard from './bingoBoard';
 import bingoCards from '../assets/data/bingoCards.json';
+import Firework from './firework';
 
 const useStyles = makeStyles(() => ({
   appBarCoontainer: {
@@ -59,7 +60,7 @@ const Bingo = () => {
     setShowFirework(true);
     setTimeout(() => {
       setShowFirework(false);
-    }, 5000);
+    }, 1500);
   };
 
   const [pickedCombinations, setPickedCombinations] = useState([]);
@@ -95,12 +96,7 @@ const Bingo = () => {
       <div className={classes.appBarCoontainer}>
         <BingoAppBar startNewGame={startNewGame} />
       </div>
-      {showFirework && (
-        <div className="pyro">
-          <div className="before" />
-          <div className="after" />
-        </div>
-      )}
+      <Firework visible={showFirework} />
       <div className={classes.bingoContainer}>
         <BingoBoard className={classes.bingo} bingoCards={bingoCards} picked={picked} pick={pick} />
       </div>
