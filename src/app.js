@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import ButtonAppBar from './bingoAppBar';
 import Bingo from './bingo';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   appBarCoontainer: {
     height: '84px'
   },
@@ -13,13 +13,13 @@ const useStyles = makeStyles((theme) => ({
     height: 'calc(100% - 84px)',
     width: '100%'
   },
-  middle:  {
-      display: 'table-cell',
-      verticalAlign: 'middle'
+  middle: {
+    display: 'table-cell',
+    verticalAlign: 'middle'
   },
   inner: {
-      margin: '0 auto',
-      maxWidth: '600px'
+    margin: '0 auto',
+    maxWidth: '600px'
   }
 }));
 
@@ -40,6 +40,6 @@ const App = () => {
       </div>
     </div>
   );
-}
+};
 
 export default App;

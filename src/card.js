@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   container: {
     width: '100%',
     paddingTop: '100%',
@@ -17,7 +17,8 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const App = ({id}) => {
+// eslint-disable-next-line react/prop-types
+const App = ({ id }) => {
   const classes = useStyles();
 
   return (

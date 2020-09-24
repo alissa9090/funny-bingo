@@ -5,7 +5,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 
-const useStyles = makeStyles((theme) => (
+const useStyles = makeStyles(() => (
   {
     root: {
       flexGrow: 1,
@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => (
     },
     title: {
       marginLeft: '20px',
-      flexGrow: 1,
+      flexGrow: 1
     },
     button: {
       color: 'white'
@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => (
 
 const ButtonAppBar = () => {
   const classes = useStyles();
-  
+
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -35,6 +35,6 @@ const ButtonAppBar = () => {
       </AppBar>
     </div>
   );
-}
+};
 
 export default ButtonAppBar;
