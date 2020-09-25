@@ -3,7 +3,7 @@ import React from 'react';
 import BingoCard from './bingoCard';
 
 const BingoBoard = ({
-  className, bingoCards, picked, onClick, blockSize
+  className, bingoCards, picked, onClick, blockSize, pickedWinCombinations
 }) => (
   <div className={`${className} bingo-board-container`} style={{ gridTemplateColumns: `repeat(${blockSize}, 1fr)`, gridTemplateRows: `repeat(${blockSize}, 1fr)` }}>
     {bingoCards.slice(0, blockSize * blockSize).map((bingoCard) => (
@@ -12,6 +12,7 @@ const BingoBoard = ({
         text={bingoCard.text}
         picked={picked.includes(bingoCard.id)}
         onClick={onClick(bingoCard.id)}
+        highlight={pickedWinCombinations.includes(bingoCard.id)}
       />
     ))}
   </div>

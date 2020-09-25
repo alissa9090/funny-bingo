@@ -61,6 +61,8 @@ const Bingo = ({ blockSize }) => {
     setShowFirework(false);
   };
 
+  const pickedWinCombinations = winCombinations.filter((winCombination) => winCombination.every((winId) => picked.includes(winId))).flat();
+
   return (
     <div className="bingo-board">
       <div className="app-bar-coontainer">
@@ -68,7 +70,7 @@ const Bingo = ({ blockSize }) => {
       </div>
       <Firework visible={showFirework} />
       <div className="bingo-container">
-        <BingoBoard className="bingo" bingoCards={bingoCards} picked={picked} onClick={togglePick} blockSize={blockSize} />
+        <BingoBoard className="bingo" bingoCards={bingoCards} picked={picked} onClick={togglePick} blockSize={blockSize} pickedWinCombinations={pickedWinCombinations} />
       </div>
     </div>
   );

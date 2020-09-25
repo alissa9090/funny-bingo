@@ -3,9 +3,9 @@
 import React from 'react';
 
 // eslint-disable-next-line react/prop-types
-const BingoCard = ({ text, picked, onClick }) => (
+const BingoCard = ({ text, picked, onClick, highlight }) => (
   <div className="bingo-card-container responsive-font-size" onClick={onClick}>
-    <div className={`${picked ? 'crossed-out ' : ''}bingo-card-item`}>{text}</div>
+    <div className={`${picked ? 'crossed-out ' : ''}${highlight ? 'highlighted ' : ''}bingo-card-item`}>{text}</div>
   </div>
 );
 

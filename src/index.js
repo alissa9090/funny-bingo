@@ -4,6 +4,6 @@ import Bingo from './bingo';
 import '../assets/css/index.less';
 
 ReactDOM.render(
-  <Bingo blockSize={3} />,
+  <Bingo blockSize={5} />,
   document.getElementById('root')
 );
