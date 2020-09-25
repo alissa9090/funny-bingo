@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React, { useState } from 'react';
 import BingoAppBar from './bingoAppBar';
 import BingoBoard from './bingoBoard';
@@ -8,27 +9,15 @@ const getWinCombinations = () => {
   const winCombinations = [];
   [...Array(5).keys()].forEach((index) => {
     const rowWinIds = bingoCards.slice(index * 5, index * 5 + 5).map(({ id }) => id);
-    winCombinations.push({
-      id: `row-${index}`,
-      winIds: rowWinIds.filter((id) => id !== 12)
-    });
+    winCombinations.push(rowWinIds.filter((id) => id !== 12));
 
     const colWinIds = Array.from({ length: 5 }, (_, i) => index + i * 5);
-    winCombinations.push({
-      id: `col-${index}`,
-      winIds: colWinIds.filter((id) => id !== 12)
-    });
+    winCombinations.push(colWinIds.filter((id) => id !== 12));
   });
 
-  winCombinations.push({
-    id: 'diagonal-lr',
-    winIds: [0, 6, 18, 24]
-  });
+  winCombinations.push([0, 6, 18, 24]);
 
-  winCombinations.push({
-    id: 'diagonal-rl',
-    winIds: [4, 8, 16, 20]
-  });
+  winCombinations.push([4, 8, 16, 20]);
 
   return winCombinations;
 };
@@ -44,32 +33,27 @@ const Bingo = () => {
     }, 1500);
   };
 
-  const [pickedCombinations, setPickedCombinations] = useState([]);
-  const checkIfWinn = (pickedArray) => {
-    winCombinations.some((winCombination) => {
-      if (
-        winCombination.winIds.every((id) => pickedArray.includes(id))
-        && !pickedCombinations.includes(winCombination.id)
-      ) {
-        setPickedCombinations([...pickedCombinations, winCombination.id]);
-        selebrate();
-        return true;
-      }
-      return false;
-    });
+  const checkIfWinn = (pickedId, pickedArray) => {
+    const win = winCombinations
+      .filter((winCombination) => winCombination.includes(pickedId))
+      .some((winCombination) => winCombination.every((winId) => pickedArray.includes(winId)));
+    if (win) {
+      selebrate();
+    }
   };
 
   const [picked, setPicked] = useState([]);
   const pick = (id) => () => {
-    const newPicked = picked.includes(id) || id === 12 ? picked : [...picked, id];
-
-    setPicked(newPicked);
-    checkIfWinn(newPicked);
+    if (!picked.includes(id)) {
+      const newPicked = [...picked, id];
+      setPicked(newPicked);
+      checkIfWinn(id, newPicked);
+    }
   };
 
   const startNewGame = () => {
-    setPickedCombinations([]);
     setPicked([]);
+    setShowFirework(false);
   };
 
   return (
