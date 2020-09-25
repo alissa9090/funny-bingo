@@ -1,29 +1,15 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable max-len */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import BingoAppBar from './bingoAppBar';
 import BingoBoard from './bingoBoard';
 import bingoCards from '../assets/data/bingoCards.json';
 import Firework from './firework';
+import { getWinIndexCombinations, getMiddleIndex } from './helpers';
 
-const getWinCombinations = () => {
-  const winCombinations = [];
-  [...Array(5).keys()].forEach((index) => {
-    const rowWinIds = bingoCards.slice(index * 5, index * 5 + 5).map(({ id }) => id);
-    winCombinations.push(rowWinIds.filter((id) => id !== 12));
-
-    const colWinIds = Array.from({ length: 5 }, (_, i) => index + i * 5);
-    winCombinations.push(colWinIds.filter((id) => id !== 12));
-  });
-
-  winCombinations.push([0, 6, 18, 24]);
-
-  winCombinations.push([4, 8, 16, 20]);
-
-  return winCombinations;
-};
-
-const Bingo = () => {
-  const winCombinations = getWinCombinations();
+const Bingo = ({ blockSize }) => {
+  const winCombinations = useMemo(() => getWinIndexCombinations(blockSize), [blockSize]);
+  const middleIndex = getMiddleIndex(blockSize);
 
   const [showFirework, setShowFirework] = useState(false);
   const selebrate = () => {
@@ -58,11 +44,15 @@ const Bingo = () => {
   };
 
   const [picked, setPicked] = useState([]);
-  const pick = (id) => () => {
-    if (!picked.includes(id)) {
-      const newPicked = [...picked, id];
-      setPicked(newPicked);
-      checkIfWinn(id, newPicked);
+  const togglePick = (id) => () => {
+    if (id !== middleIndex) {
+      if (!picked.includes(id)) {
+        const newPicked = [...picked, id];
+        setPicked(newPicked);
+        checkIfWinn(id, newPicked);
+      } else {
+        setPicked(picked.filter((i) => i !== id));
+      }
     }
   };
 
@@ -78,7 +68,7 @@ const Bingo = () => {
       </div>
       <Firework visible={showFirework} />
       <div className="bingo-container">
-        <BingoBoard className="bingo" bingoCards={bingoCards} picked={picked} pick={pick} />
+        <BingoBoard className="bingo" bingoCards={bingoCards} picked={picked} onClick={togglePick} blockSize={blockSize} />
       </div>
     </div>
   );
