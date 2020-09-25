@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import BingoAppBar from './bingoAppBar';
 import BingoBoard from './bingoBoard';
 import bingoCards from '../assets/data/bingoCards.json';
@@ -28,10 +28,25 @@ const Bingo = () => {
   const [showFirework, setShowFirework] = useState(false);
   const selebrate = () => {
     setShowFirework(true);
-    setTimeout(() => {
-      setShowFirework(false);
-    }, 1500);
   };
+
+  // eslint-disable-next-line consistent-return
+  useEffect(() => {
+    // console.log('use effect start');
+    if (showFirework) {
+      const fireworkTimer = setTimeout(() => {
+        // console.log(`check if showFirework is true - ${showFirework}`);
+        if (showFirework) {
+          // console.log('set showFirework to false');
+          setShowFirework(false);
+        }
+      }, 1500);
+      return () => {
+        // console.log('clear timeout');
+        clearTimeout(fireworkTimer);
+      };
+    }
+  }, [showFirework]);
 
   const checkIfWinn = (pickedId, pickedArray) => {
     const win = winCombinations
