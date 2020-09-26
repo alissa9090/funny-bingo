@@ -1,11 +1,11 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable max-len */
 import React, { useState, useEffect, useMemo } from 'react';
+import { bingoCards, middleCard } from './constants';
 import BingoAppBar from './bingoAppBar';
 import BingoBoard from './bingoBoard';
-import bingoCards from '../assets/data/bingoCards.json';
 import Firework from './firework';
-import { getWinIndexCombinations, getMiddleIndex } from './helpers';
+import { getWinIndexCombinations, getMiddleIndex, prepareBingoCardsForNewGame } from './helpers';
 
 const Bingo = ({ blockSize }) => {
   const winCombinations = useMemo(() => getWinIndexCombinations(blockSize), [blockSize]);
@@ -56,9 +56,12 @@ const Bingo = ({ blockSize }) => {
     }
   };
 
+  const [shuffledBingoCards, setShuffledBingoCards] = useState(prepareBingoCardsForNewGame(bingoCards, blockSize, middleCard));
+
   const startNewGame = () => {
     setPicked([]);
     setShowFirework(false);
+    setShuffledBingoCards(prepareBingoCardsForNewGame(bingoCards, blockSize, middleCard));
   };
 
   const pickedWinCombinations = winCombinations.filter((winCombination) => winCombination.every((winId) => picked.includes(winId))).flat();
@@ -70,7 +73,7 @@ const Bingo = ({ blockSize }) => {
       </div>
       <Firework visible={showFirework} />
       <div className="bingo-container">
-        <BingoBoard className="bingo" bingoCards={bingoCards} picked={picked} onClick={togglePick} blockSize={blockSize} pickedWinCombinations={pickedWinCombinations} />
+        <BingoBoard className="bingo" bingoCards={shuffledBingoCards} picked={picked} onClick={togglePick} blockSize={blockSize} pickedWinCombinations={pickedWinCombinations} />
       </div>
     </div>
   );

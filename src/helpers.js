@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 const getMiddleIndex = (blockSize) => (blockSize * blockSize - 1) / 2;
 
 const getWinIndexCombinations = (blockSize) => {
@@ -23,7 +24,7 @@ const getWinIndexCombinations = (blockSize) => {
   return winCombinations;
 };
 
-function shuffle(array) {
+const shuffle = (array) => {
   let j;
   let x;
   let i;
@@ -37,10 +38,22 @@ function shuffle(array) {
     result[j] = x;
   }
   return result;
-}
+};
+
+const prepareBingoCardsForNewGame = (bingoCards, blockSize, middleCard) => {
+  const shuffledCards = shuffle(bingoCards);
+  const middleIndex = getMiddleIndex(blockSize);
+
+  if (Number.isInteger(middleIndex)) {
+    return [...shuffledCards.slice(0, middleIndex), middleCard, ...shuffledCards.slice(middleIndex)];
+  }
+
+  return shuffledCards;
+};
 
 export {
   getMiddleIndex,
   getWinIndexCombinations,
-  shuffle
+  shuffle,
+  prepareBingoCardsForNewGame
 };
