@@ -23,7 +23,24 @@ const getWinIndexCombinations = (blockSize) => {
   return winCombinations;
 };
 
+function shuffle(array) {
+  let j;
+  let x;
+  let i;
+  const result = [...array];
+
+  // eslint-disable-next-line no-plusplus
+  for (i = result.length - 1; i > 0; i--) {
+    j = Math.floor(Math.random() * (i + 1));
+    x = result[i];
+    result[i] = result[j];
+    result[j] = x;
+  }
+  return result;
+}
+
 export {
   getMiddleIndex,
-  getWinIndexCombinations
+  getWinIndexCombinations,
+  shuffle
 };
