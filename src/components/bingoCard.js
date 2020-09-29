@@ -1,15 +1,50 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
+import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
-// eslint-disable-next-line react/prop-types
 const BingoCard = ({
-  text, marked, onClick, highlight
-}) => (
-  <div className="bingo-card-container responsive-font-size" onClick={onClick}>
-    <div className={`${marked ? 'crossed-out ' : ''}${highlight ? 'highlighted ' : ''}bingo-card-item`}>{text}</div>
-  </div>
-);
+  text,
+  marked,
+  onClick,
+  isInMarkedWinningCombination
+}) => {
+  const onKeyPressHandler = (event) => {
+    if (event.key === 'Enter') {
+      onClick(event);
+    }
+  };
+
+  const cardItemClasses = classNames('bingo-card-item', {
+    'crossed-out': marked,
+    highlighted: isInMarkedWinningCombination
+  });
+
+  return (
+    <div
+      className="bingo-card-container responsive-font-size"
+      onClick={onClick}
+      role="checkbox"
+      aria-checked={marked}
+      tabIndex="0"
+      onKeyPress={onKeyPressHandler}
+    >
+      <div className={cardItemClasses}>{ text }</div>
+    </div>
+  );
+};
+
+BingoCard.propTypes = {
+  text: PropTypes.string,
+  marked: PropTypes.bool,
+  onClick: PropTypes.func,
+  isInMarkedWinningCombination: PropTypes.bool
+};
+
+BingoCard.defaultProps = {
+  text: '',
+  marked: false,
+  onClick: () => {},
+  isInMarkedWinningCombination: false
+};
 
 export default BingoCard;

@@ -43,15 +43,15 @@ const Bingo = ({ edgeSize }) => {
     }
   };
 
-  const [marked, setPicked] = useState([]);
-  const togglePick = (id) => () => {
+  const [marked, setMarked] = useState([]);
+  const toggleMarked = (id) => () => {
     if (id !== centerIndex) {
       if (!marked.includes(id)) {
         const newPicked = [...marked, id];
-        setPicked(newPicked);
+        setMarked(newPicked);
         checkIfWinn(id, newPicked);
       } else {
-        setPicked(marked.filter((i) => i !== id));
+        setMarked(marked.filter((i) => i !== id));
       }
     }
   };
@@ -59,7 +59,7 @@ const Bingo = ({ edgeSize }) => {
   const [shuffledBingoCards, setShuffledBingoCards] = useState(prepareBingoCardsForNewGame(bingoCards, edgeSize, centerCard));
 
   const startNewGame = () => {
-    setPicked([]);
+    setMarked([]);
     setShowFirework(false);
     setShuffledBingoCards(prepareBingoCardsForNewGame(bingoCards, edgeSize, centerCard));
   };
@@ -73,7 +73,7 @@ const Bingo = ({ edgeSize }) => {
       </div>
       <Firework visible={showFirework} />
       <div className="bingo-container">
-        <BingoBoard className="bingo" bingoCards={shuffledBingoCards} marked={marked} onClick={togglePick} edgeSize={edgeSize} markedWinningCombinations={markedWinningCombinations} />
+        <BingoBoard className="bingo" bingoCards={shuffledBingoCards} marked={marked} onClick={toggleMarked} edgeSize={edgeSize} markedWinningCombinations={markedWinningCombinations} />
       </div>
     </div>
   );
