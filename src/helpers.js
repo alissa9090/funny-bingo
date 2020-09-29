@@ -36,7 +36,7 @@ const shuffle = (array) => {
 };
 
 const prepareBingoCardsForNewGame = (bingoCards, edgeSize, centerCard) => {
-  const shuffledCards = shuffle(bingoCards);
+  const shuffledCards = shuffle(bingoCards).slice(0, edgeSize * edgeSize);
   const middleIndex = getСenterIndex(edgeSize);
 
   if (Number.isInteger(middleIndex)) {
@@ -46,9 +46,14 @@ const prepareBingoCardsForNewGame = (bingoCards, edgeSize, centerCard) => {
   return shuffledCards;
 };
 
+const checkWin = (markedIndex, markedArray, winningIndexCombinations) => winningIndexCombinations
+  .filter((winCombination) => winCombination.includes(markedIndex))
+  .some((winCombination) => winCombination.every((winIndex) => markedArray.includes(winIndex)));
+
 export {
   getСenterIndex,
   getWinningIndexCombinations,
   shuffle,
-  prepareBingoCardsForNewGame
+  prepareBingoCardsForNewGame,
+  checkWin
 };

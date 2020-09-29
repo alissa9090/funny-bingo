@@ -1,20 +1,20 @@
 /* eslint-disable react/prop-types */
-/* eslint-disable max-len */
 import React, { useState, useEffect, useMemo } from 'react';
-import { bingoCards, centerCard } from '../constants';
 import BingoAppBar from './bingoAppBar';
 import BingoBoard from './bingoBoard';
 import Firework from './firework';
-import { getWinningIndexCombinations, getСenterIndex, prepareBingoCardsForNewGame } from '../helpers';
+import {
+  getWinningIndexCombinations,
+  getСenterIndex,
+  prepareBingoCardsForNewGame,
+  checkWin
+} from '../helpers';
 
-const Bingo = ({ edgeSize }) => {
+const Bingo = ({ edgeSize, cards, centerCard }) => {
   const winningIndexCombinations = useMemo(() => getWinningIndexCombinations(edgeSize), [edgeSize]);
   const centerIndex = getСenterIndex(edgeSize);
 
   const [showFirework, setShowFirework] = useState(false);
-  const selebrate = () => {
-    setShowFirework(true);
-  };
 
   // eslint-disable-next-line consistent-return
   useEffect(() => {
@@ -34,37 +34,36 @@ const Bingo = ({ edgeSize }) => {
     }
   }, [showFirework]);
 
-  const checkIfWinn = (markedId, markedArray) => {
-    const win = winningIndexCombinations
-      .filter((winCombination) => winCombination.includes(markedId))
-      .some((winCombination) => winCombination.every((winId) => markedArray.includes(winId)));
-    if (win) {
-      selebrate();
-    }
-  };
-
-  const [marked, setMarked] = useState([]);
-  const toggleMarked = (id) => () => {
-    if (id !== centerIndex) {
-      if (!marked.includes(id)) {
-        const newPicked = [...marked, id];
-        setMarked(newPicked);
-        checkIfWinn(id, newPicked);
+  const [markedIndexes, setMarkedIndexes] = useState([]);
+  const toggleMarked = (index) => () => {
+    if (index !== centerIndex) {
+      if (!markedIndexes.includes(index)) {
+        const newMarkedIndexes = [...markedIndexes, index];
+        setMarkedIndexes(newMarkedIndexes);
+        if (checkWin(index, newMarkedIndexes, winningIndexCombinations)) {
+          setShowFirework(true);
+        }
       } else {
-        setMarked(marked.filter((i) => i !== id));
+        setMarkedIndexes(markedIndexes.filter((i) => i !== index));
       }
     }
   };
 
-  const [shuffledBingoCards, setShuffledBingoCards] = useState(prepareBingoCardsForNewGame(bingoCards, edgeSize, centerCard));
+  const [bingoCards, setBingoCards] = useState(
+    prepareBingoCardsForNewGame(cards, edgeSize, centerCard)
+  );
 
   const startNewGame = () => {
-    setMarked([]);
+    setMarkedIndexes([]);
     setShowFirework(false);
-    setShuffledBingoCards(prepareBingoCardsForNewGame(bingoCards, edgeSize, centerCard));
+    setBingoCards(
+      prepareBingoCardsForNewGame(cards, edgeSize, centerCard)
+    );
   };
 
-  const markedWinningCombinations = winningIndexCombinations.filter((winCombination) => winCombination.every((winId) => marked.includes(winId))).flat();
+  const markedWinningIndexCombinations = winningIndexCombinations.filter(
+    (winCombination) => winCombination.every((winIndex) => markedIndexes.includes(winIndex))
+  ).flat();
 
   return (
     <div className="bingo-board">
@@ -73,7 +72,13 @@ const Bingo = ({ edgeSize }) => {
       </div>
       <Firework visible={showFirework} />
       <div className="bingo-container">
-        <BingoBoard cards={shuffledBingoCards} markedCardsIndexes={marked} onCardClick={toggleMarked} edgeSize={edgeSize} markedWinningIndexCombinations={markedWinningCombinations} />
+        <BingoBoard
+          cards={bingoCards}
+          markedCardsIndexes={markedIndexes}
+          onCardClick={toggleMarked}
+          edgeSize={edgeSize}
+          markedWinningIndexCombinations={markedWinningIndexCombinations}
+        />
       </div>
     </div>
   );

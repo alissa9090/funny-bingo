@@ -21,8 +21,6 @@
         "semi": "error",
         "import/extensions": "off",
         "react/jsx-filename-extension": "off",
-        "no-use-before-define": [0],
-        "import/no-unresolved": "off",
         "comma-dangle": ["error", "never"]
     }
 }
