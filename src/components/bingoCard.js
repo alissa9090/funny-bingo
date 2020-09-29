@@ -8,28 +8,19 @@ const BingoCard = ({
   onClick,
   isInMarkedWinningCombination
 }) => {
-  const onKeyPressHandler = (event) => {
-    if (event.key === 'Enter') {
-      onClick(event);
-    }
-  };
-
   const cardItemClasses = classNames('bingo-card-item', {
     'crossed-out': marked,
     highlighted: isInMarkedWinningCombination
   });
 
   return (
-    <div
+    <button
+      type="button"
       className="bingo-card-container responsive-font-size"
       onClick={onClick}
-      role="checkbox"
-      aria-checked={marked}
-      tabIndex="0"
-      onKeyPress={onKeyPressHandler}
     >
       <div className={cardItemClasses}>{ text }</div>
-    </div>
+    </button>
   );
 };
 
