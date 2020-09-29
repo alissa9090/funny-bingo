@@ -29,7 +29,7 @@ const getWinIndexCombinations = (edgeSize) => {
  */
 const shuffle = (array) => {
   const result = [...array];
-  for (let i = result.length - 1; i > 0; i - 1) {
+  for (let i = result.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [result[i], result[j]] = [result[j], result[i]];
   }
@@ -41,7 +41,7 @@ const prepareBingoCardsForNewGame = (bingoCards, edgeSize, centerCard) => {
   const middleIndex = getСenterIndex(edgeSize);
 
   if (Number.isInteger(middleIndex)) {
-    return shuffledCards.splice(middleIndex, 0, centerCard);
+    shuffledCards.splice(middleIndex, 0, centerCard);
   }
 
   return shuffledCards;
