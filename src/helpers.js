@@ -24,18 +24,14 @@ const getWinIndexCombinations = (blockSize) => {
   return winCombinations;
 };
 
+/**
+ * Shuffles array in place.
+ */
 const shuffle = (array) => {
-  let j;
-  let x;
-  let i;
   const result = [...array];
-
-  // eslint-disable-next-line no-plusplus
-  for (i = result.length - 1; i > 0; i--) {
-    j = Math.floor(Math.random() * (i + 1));
-    x = result[i];
-    result[i] = result[j];
-    result[j] = x;
+  for (let i = result.length - 1; i > 0; i - 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [result[i], result[j]] = [result[j], result[i]];
   }
   return result;
 };
