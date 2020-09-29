@@ -4,16 +4,16 @@ import React from 'react';
 import BingoCard from './bingoCard';
 
 const BingoBoard = ({
-  className, bingoCards, picked, onClick, edgeSize, pickedWinCombinations
+  className, bingoCards, marked, onClick, edgeSize, markedWinningCombinations
 }) => (
   <div className={`${className} bingo-board-container`} style={{ gridTemplateColumns: `repeat(${edgeSize}, 1fr)`, gridTemplateRows: `repeat(${edgeSize}, 1fr)` }}>
     {bingoCards.slice(0, edgeSize * edgeSize).map((bingoCard, index) => (
       <BingoCard
         key={index}
         text={bingoCard}
-        picked={picked.includes(index)}
+        marked={marked.includes(index)}
         onClick={onClick(index)}
-        highlight={pickedWinCombinations.includes(index)}
+        highlight={markedWinningCombinations.includes(index)}
       />
     ))}
   </div>

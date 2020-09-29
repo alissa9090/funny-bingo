@@ -1,27 +1,26 @@
-/* eslint-disable max-len */
 const getСenterIndex = (edgeSize) => (edgeSize * edgeSize - 1) / 2;
 
-const getWinIndexCombinations = (edgeSize) => {
-  const winCombinations = [];
+const getWinningIndexCombinations = (edgeSize) => {
+  const winningIndexCombinations = [];
   const lrDiagonal = [];
   const rlDiagonal = [];
   const centerIndex = getСenterIndex(edgeSize);
 
   [...Array(edgeSize).keys()].forEach((index) => {
     const rowWinIds = Array.from({ length: edgeSize }, (_, i) => i + index * edgeSize);
-    winCombinations.push(rowWinIds.filter((id) => id !== centerIndex));
+    winningIndexCombinations.push(rowWinIds.filter((i) => i !== centerIndex));
 
     const colWinIds = Array.from({ length: edgeSize }, (_, i) => index + i * edgeSize);
-    winCombinations.push(colWinIds.filter((id) => id !== centerIndex));
+    winningIndexCombinations.push(colWinIds.filter((i) => i !== centerIndex));
 
     lrDiagonal.push(0 + (edgeSize + 1) * index);
     rlDiagonal.push((edgeSize - 1) + (edgeSize - 1) * index);
   });
 
-  winCombinations.push(lrDiagonal.filter((id) => id !== centerIndex));
-  winCombinations.push(rlDiagonal.filter((id) => id !== centerIndex));
+  winningIndexCombinations.push(lrDiagonal.filter((i) => i !== centerIndex));
+  winningIndexCombinations.push(rlDiagonal.filter((i) => i !== centerIndex));
 
-  return winCombinations;
+  return winningIndexCombinations;
 };
 
 /**
@@ -29,7 +28,7 @@ const getWinIndexCombinations = (edgeSize) => {
  */
 const shuffle = (array) => {
   const result = [...array];
-  for (let i = result.length - 1; i > 0; i--) {
+  for (let i = result.length - 1; i > 0; i -= 1) {
     const j = Math.floor(Math.random() * (i + 1));
     [result[i], result[j]] = [result[j], result[i]];
   }
@@ -49,7 +48,7 @@ const prepareBingoCardsForNewGame = (bingoCards, edgeSize, centerCard) => {
 
 export {
   getСenterIndex,
-  getWinIndexCombinations,
+  getWinningIndexCombinations,
   shuffle,
   prepareBingoCardsForNewGame
 };

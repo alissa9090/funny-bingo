@@ -5,10 +5,10 @@ import { bingoCards, centerCard } from '../constants';
 import BingoAppBar from './bingoAppBar';
 import BingoBoard from './bingoBoard';
 import Firework from './firework';
-import { getWinIndexCombinations, getСenterIndex, prepareBingoCardsForNewGame } from '../helpers';
+import { getWinningIndexCombinations, getСenterIndex, prepareBingoCardsForNewGame } from '../helpers';
 
 const Bingo = ({ edgeSize }) => {
-  const winCombinations = useMemo(() => getWinIndexCombinations(edgeSize), [edgeSize]);
+  const winningIndexCombinations = useMemo(() => getWinningIndexCombinations(edgeSize), [edgeSize]);
   const centerIndex = getСenterIndex(edgeSize);
 
   const [showFirework, setShowFirework] = useState(false);
@@ -34,24 +34,24 @@ const Bingo = ({ edgeSize }) => {
     }
   }, [showFirework]);
 
-  const checkIfWinn = (pickedId, pickedArray) => {
-    const win = winCombinations
-      .filter((winCombination) => winCombination.includes(pickedId))
-      .some((winCombination) => winCombination.every((winId) => pickedArray.includes(winId)));
+  const checkIfWinn = (markedId, markedArray) => {
+    const win = winningIndexCombinations
+      .filter((winCombination) => winCombination.includes(markedId))
+      .some((winCombination) => winCombination.every((winId) => markedArray.includes(winId)));
     if (win) {
       selebrate();
     }
   };
 
-  const [picked, setPicked] = useState([]);
+  const [marked, setPicked] = useState([]);
   const togglePick = (id) => () => {
     if (id !== centerIndex) {
-      if (!picked.includes(id)) {
-        const newPicked = [...picked, id];
+      if (!marked.includes(id)) {
+        const newPicked = [...marked, id];
         setPicked(newPicked);
         checkIfWinn(id, newPicked);
       } else {
-        setPicked(picked.filter((i) => i !== id));
+        setPicked(marked.filter((i) => i !== id));
       }
     }
   };
@@ -64,7 +64,7 @@ const Bingo = ({ edgeSize }) => {
     setShuffledBingoCards(prepareBingoCardsForNewGame(bingoCards, edgeSize, centerCard));
   };
 
-  const pickedWinCombinations = winCombinations.filter((winCombination) => winCombination.every((winId) => picked.includes(winId))).flat();
+  const markedWinningCombinations = winningIndexCombinations.filter((winCombination) => winCombination.every((winId) => marked.includes(winId))).flat();
 
   return (
     <div className="bingo-board">
@@ -73,7 +73,7 @@ const Bingo = ({ edgeSize }) => {
       </div>
       <Firework visible={showFirework} />
       <div className="bingo-container">
-        <BingoBoard className="bingo" bingoCards={shuffledBingoCards} picked={picked} onClick={togglePick} edgeSize={edgeSize} pickedWinCombinations={pickedWinCombinations} />
+        <BingoBoard className="bingo" bingoCards={shuffledBingoCards} marked={marked} onClick={togglePick} edgeSize={edgeSize} markedWinningCombinations={markedWinningCombinations} />
       </div>
     </div>
   );
