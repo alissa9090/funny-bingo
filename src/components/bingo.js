@@ -73,7 +73,7 @@ const Bingo = ({ edgeSize }) => {
       </div>
       <Firework visible={showFirework} />
       <div className="bingo-container">
-        <BingoBoard className="bingo" bingoCards={shuffledBingoCards} marked={marked} onClick={toggleMarked} edgeSize={edgeSize} markedWinningCombinations={markedWinningCombinations} />
+        <BingoBoard cards={shuffledBingoCards} markedCardsIndexes={marked} onCardClick={toggleMarked} edgeSize={edgeSize} markedWinningIndexCombinations={markedWinningCombinations} />
       </div>
     </div>
   );
