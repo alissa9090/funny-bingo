@@ -1,25 +1,25 @@
 /* eslint-disable max-len */
-const getMiddleIndex = (blockSize) => (blockSize * blockSize - 1) / 2;
+const getСenterIndex = (edgeSize) => (edgeSize * edgeSize - 1) / 2;
 
-const getWinIndexCombinations = (blockSize) => {
+const getWinIndexCombinations = (edgeSize) => {
   const winCombinations = [];
   const lrDiagonal = [];
   const rlDiagonal = [];
-  const middleIndex = getMiddleIndex(blockSize);
+  const centerIndex = getСenterIndex(edgeSize);
 
-  [...Array(blockSize).keys()].forEach((index) => {
-    const rowWinIds = Array.from({ length: blockSize }, (_, i) => i + index * blockSize);
-    winCombinations.push(rowWinIds.filter((id) => id !== middleIndex));
+  [...Array(edgeSize).keys()].forEach((index) => {
+    const rowWinIds = Array.from({ length: edgeSize }, (_, i) => i + index * edgeSize);
+    winCombinations.push(rowWinIds.filter((id) => id !== centerIndex));
 
-    const colWinIds = Array.from({ length: blockSize }, (_, i) => index + i * blockSize);
-    winCombinations.push(colWinIds.filter((id) => id !== middleIndex));
+    const colWinIds = Array.from({ length: edgeSize }, (_, i) => index + i * edgeSize);
+    winCombinations.push(colWinIds.filter((id) => id !== centerIndex));
 
-    lrDiagonal.push(0 + (blockSize + 1) * index);
-    rlDiagonal.push((blockSize - 1) + (blockSize - 1) * index);
+    lrDiagonal.push(0 + (edgeSize + 1) * index);
+    rlDiagonal.push((edgeSize - 1) + (edgeSize - 1) * index);
   });
 
-  winCombinations.push(lrDiagonal.filter((id) => id !== middleIndex));
-  winCombinations.push(rlDiagonal.filter((id) => id !== middleIndex));
+  winCombinations.push(lrDiagonal.filter((id) => id !== centerIndex));
+  winCombinations.push(rlDiagonal.filter((id) => id !== centerIndex));
 
   return winCombinations;
 };
@@ -36,19 +36,19 @@ const shuffle = (array) => {
   return result;
 };
 
-const prepareBingoCardsForNewGame = (bingoCards, blockSize, middleCard) => {
+const prepareBingoCardsForNewGame = (bingoCards, edgeSize, centerCard) => {
   const shuffledCards = shuffle(bingoCards);
-  const middleIndex = getMiddleIndex(blockSize);
+  const middleIndex = getСenterIndex(edgeSize);
 
   if (Number.isInteger(middleIndex)) {
-    return [...shuffledCards.slice(0, middleIndex), middleCard, ...shuffledCards.slice(middleIndex)];
+    return shuffledCards.splice(middleIndex, 0, centerCard);
   }
 
   return shuffledCards;
 };
 
 export {
-  getMiddleIndex,
+  getСenterIndex,
   getWinIndexCombinations,
   shuffle,
   prepareBingoCardsForNewGame

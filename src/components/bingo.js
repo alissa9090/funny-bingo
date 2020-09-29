@@ -1,15 +1,15 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable max-len */
 import React, { useState, useEffect, useMemo } from 'react';
-import { bingoCards, middleCard } from './constants';
+import { bingoCards, centerCard } from '../constants';
 import BingoAppBar from './bingoAppBar';
 import BingoBoard from './bingoBoard';
 import Firework from './firework';
-import { getWinIndexCombinations, getMiddleIndex, prepareBingoCardsForNewGame } from './helpers';
+import { getWinIndexCombinations, getСenterIndex, prepareBingoCardsForNewGame } from '../helpers';
 
-const Bingo = ({ blockSize }) => {
-  const winCombinations = useMemo(() => getWinIndexCombinations(blockSize), [blockSize]);
-  const middleIndex = getMiddleIndex(blockSize);
+const Bingo = ({ edgeSize }) => {
+  const winCombinations = useMemo(() => getWinIndexCombinations(edgeSize), [edgeSize]);
+  const centerIndex = getСenterIndex(edgeSize);
 
   const [showFirework, setShowFirework] = useState(false);
   const selebrate = () => {
@@ -45,7 +45,7 @@ const Bingo = ({ blockSize }) => {
 
   const [picked, setPicked] = useState([]);
   const togglePick = (id) => () => {
-    if (id !== middleIndex) {
+    if (id !== centerIndex) {
       if (!picked.includes(id)) {
         const newPicked = [...picked, id];
         setPicked(newPicked);
@@ -56,12 +56,12 @@ const Bingo = ({ blockSize }) => {
     }
   };
 
-  const [shuffledBingoCards, setShuffledBingoCards] = useState(prepareBingoCardsForNewGame(bingoCards, blockSize, middleCard));
+  const [shuffledBingoCards, setShuffledBingoCards] = useState(prepareBingoCardsForNewGame(bingoCards, edgeSize, centerCard));
 
   const startNewGame = () => {
     setPicked([]);
     setShowFirework(false);
-    setShuffledBingoCards(prepareBingoCardsForNewGame(bingoCards, blockSize, middleCard));
+    setShuffledBingoCards(prepareBingoCardsForNewGame(bingoCards, edgeSize, centerCard));
   };
 
   const pickedWinCombinations = winCombinations.filter((winCombination) => winCombination.every((winId) => picked.includes(winId))).flat();
@@ -73,7 +73,7 @@ const Bingo = ({ blockSize }) => {
       </div>
       <Firework visible={showFirework} />
       <div className="bingo-container">
-        <BingoBoard className="bingo" bingoCards={shuffledBingoCards} picked={picked} onClick={togglePick} blockSize={blockSize} pickedWinCombinations={pickedWinCombinations} />
+        <BingoBoard className="bingo" bingoCards={shuffledBingoCards} picked={picked} onClick={togglePick} edgeSize={edgeSize} pickedWinCombinations={pickedWinCombinations} />
       </div>
     </div>
   );

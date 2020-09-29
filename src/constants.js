@@ -25,9 +25,9 @@ const bingoCards = [
   'who just joined?'
 ];
 
-const middleCard = 'CONF CALL BINGO';
+const centerCard = 'CONF CALL BINGO';
 
 export {
   bingoCards,
-  middleCard
+  centerCard
 };

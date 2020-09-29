@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Bingo from './bingo';
+import Bingo from './components/bingo';
 import '../assets/css/index.less';
 
 ReactDOM.render(
-  <Bingo blockSize={5} />,
+  <Bingo edgeSize={5} />,
   document.getElementById('root')
 );

@@ -4,10 +4,10 @@ import React from 'react';
 import BingoCard from './bingoCard';
 
 const BingoBoard = ({
-  className, bingoCards, picked, onClick, blockSize, pickedWinCombinations
+  className, bingoCards, picked, onClick, edgeSize, pickedWinCombinations
 }) => (
-  <div className={`${className} bingo-board-container`} style={{ gridTemplateColumns: `repeat(${blockSize}, 1fr)`, gridTemplateRows: `repeat(${blockSize}, 1fr)` }}>
-    {bingoCards.slice(0, blockSize * blockSize).map((bingoCard, index) => (
+  <div className={`${className} bingo-board-container`} style={{ gridTemplateColumns: `repeat(${edgeSize}, 1fr)`, gridTemplateRows: `repeat(${edgeSize}, 1fr)` }}>
+    {bingoCards.slice(0, edgeSize * edgeSize).map((bingoCard, index) => (
       <BingoCard
         key={index}
         text={bingoCard}
