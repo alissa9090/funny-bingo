@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
 import React, { useState, useEffect, useMemo } from 'react';
+import PropTypes from 'prop-types';
 import BingoAppBar from './bingoAppBar';
 import BingoBoard from './bingoBoard';
 import Firework from './firework';
@@ -76,6 +76,18 @@ const Bingo = ({ edgeSize, cards, centerCard }) => {
       </div>
     </div>
   );
+};
+
+Bingo.propTypes = {
+  edgeSize: PropTypes.number,
+  cards: PropTypes.arrayOf(PropTypes.string),
+  centerCard: PropTypes.string
+};
+
+Bingo.defaultProps = {
+  edgeSize: 0,
+  cards: [],
+  centerCard: ''
 };
 
 export default Bingo;
