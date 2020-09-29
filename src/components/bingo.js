@@ -18,19 +18,13 @@ const Bingo = ({ edgeSize, cards, centerCard }) => {
 
   // eslint-disable-next-line consistent-return
   useEffect(() => {
-    // console.log('use effect start');
     if (showFirework) {
       const fireworkTimer = setTimeout(() => {
-        // console.log(`check if showFirework is true - ${showFirework}`);
         if (showFirework) {
-          // console.log('set showFirework to false');
           setShowFirework(false);
         }
       }, 1500);
-      return () => {
-        // console.log('clear timeout');
-        clearTimeout(fireworkTimer);
-      };
+      return () => clearTimeout(fireworkTimer);
     }
   }, [showFirework]);
 
