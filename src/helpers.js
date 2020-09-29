@@ -37,10 +37,10 @@ const shuffle = (array) => {
 
 const prepareBingoCardsForNewGame = (bingoCards, edgeSize, centerCard) => {
   const shuffledCards = shuffle(bingoCards).slice(0, edgeSize * edgeSize);
-  const middleIndex = getСenterIndex(edgeSize);
+  const centerIndex = getСenterIndex(edgeSize);
 
-  if (Number.isInteger(middleIndex)) {
-    shuffledCards.splice(middleIndex, 0, centerCard);
+  if (Number.isInteger(centerIndex)) {
+    shuffledCards.splice(centerIndex, 0, centerCard);
   }
 
   return shuffledCards;
@@ -53,7 +53,6 @@ const checkWin = (markedIndex, markedArray, winningIndexCombinations) => winning
 export {
   getСenterIndex,
   getWinningIndexCombinations,
-  shuffle,
   prepareBingoCardsForNewGame,
   checkWin
 };
