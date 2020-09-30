@@ -28,10 +28,10 @@ const bingoCards = [
 ];
 
 const centerCard = (
-  <span>
+  <span role="img" aria-label="Face with Medical Mask">
     CONF CALL
-    <span role="img" aria-label="Face with Medical Mask">😷</span>
-    BINGO
+    <br />
+    😷 BINGO
   </span>
 );
 
