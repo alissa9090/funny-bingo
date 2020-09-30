@@ -23,7 +23,7 @@ body {
 .bingo-app-bar {
   flex-grow: 1;
   height: 64px;
-  background-color: #db8d92;
+  border: #333333 3px dotted;
   color: #333333;
   display: flex;
   position: relative;
@@ -50,7 +50,11 @@ body {
 }
 
 .bingo-board {
-  background-color: #fcf5f6;
+  // background: linear-gradient(45deg,#F17C58,#E94584,#24AADB,#27DBB1,#FFDC18,#FF3706);
+  background-image: url(../images/wrinkled-paper.jpg);
+  background-color: #ffffff;
+  background-repeat: no-repeat;
+  background-size: cover;
 
   .bingo-container {
     height: calc(100vh - 64px);
@@ -86,7 +90,6 @@ body {
   .bingo-card {
     padding: 8px;
     text-align: center;
-    color: rgba(0, 0, 0, 0.54);
     white-space: nowrap;
     margin-bottom: 8px
   }
@@ -107,13 +110,14 @@ body {
     align-items: center;
     justify-content: center;
     border-radius:4px;
-    border: #d0d0d0 solid 1px;
-    color: #3d3d3d;
-    background-color: #f7e6e8;
+    border: #3d3d3d 2px dotted;
+    color: #333333;
   }
 
   .crossed-out {
-    text-decoration: line-through
+    text-decoration: line-through;
+    background: white;
+    opacity: 0.5;
   }
 
   .highlighted {
