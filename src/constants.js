@@ -1,3 +1,5 @@
+import React from 'react';
+
 const bingoCards = [
   '(animal noises in the backgroud)',
   'is ___ on the call?',
@@ -25,7 +27,13 @@ const bingoCards = [
   'who just joined?'
 ];
 
-const centerCard = 'CONF CALL BINGO';
+const centerCard = (
+  <span>
+    CONF CALL
+    <span role="img" aria-label="Face with Medical Mask">😷</span>
+    BINGO
+  </span>
+);
 
 export {
   bingoCards,
