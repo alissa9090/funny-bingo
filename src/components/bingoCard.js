@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 const BingoCard = ({
-  text,
+  content,
   marked,
   onClick,
   isInMarkedWinningCombination
@@ -19,20 +19,20 @@ const BingoCard = ({
       className="bingo-card-container responsive-font-size"
       onClick={onClick}
     >
-      <div className={cardItemClasses}>{ text }</div>
+      <div className={cardItemClasses}>{ content }</div>
     </button>
   );
 };
 
 BingoCard.propTypes = {
-  text: PropTypes.string,
+  content: PropTypes.node,
   marked: PropTypes.bool,
   onClick: PropTypes.func,
   isInMarkedWinningCombination: PropTypes.bool
 };
 
 BingoCard.defaultProps = {
-  text: '',
+  content: '',
   marked: false,
   onClick: () => {},
   isInMarkedWinningCombination: false

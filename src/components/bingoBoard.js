@@ -14,7 +14,7 @@ const BingoBoard = ({
       <BingoCard
         // eslint-disable-next-line react/no-array-index-key
         key={index}
-        text={bingoCard}
+        content={bingoCard}
         marked={markedCardsIndexes.includes(index)}
         onClick={onCardClick(index)}
         isInMarkedWinningCombination={markedWinningIndexCombinations.includes(index)}
@@ -24,7 +24,7 @@ const BingoBoard = ({
 );
 
 BingoBoard.propTypes = {
-  cards: PropTypes.arrayOf(PropTypes.string),
+  cards: PropTypes.arrayOf(PropTypes.node),
   markedCardsIndexes: PropTypes.arrayOf(PropTypes.number),
   onCardClick: PropTypes.func,
   edgeSize: PropTypes.number,
