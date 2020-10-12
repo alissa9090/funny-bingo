@@ -80,8 +80,8 @@ const Bingo = ({ edgeSize, cards, centerCard }) => {
 
 Bingo.propTypes = {
   edgeSize: PropTypes.number,
-  cards: PropTypes.arrayOf(PropTypes.string),
-  centerCard: PropTypes.string
+  cards: PropTypes.arrayOf(PropTypes.node),
+  centerCard: PropTypes.node
 };
 
 Bingo.defaultProps = {
